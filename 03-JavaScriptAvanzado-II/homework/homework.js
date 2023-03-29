@@ -49,7 +49,8 @@ function cacheFunction(cb) {
     if (cach.hasOwnProperty(arg)) {  
       return cach[arg];
     } else {
-      return cach[arg] = cb(arg);
+      cach[arg] = cb(arg)
+      return cach[arg];
     }
   }
 }
