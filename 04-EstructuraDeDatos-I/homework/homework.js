@@ -14,9 +14,62 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
 
-function nFactorial(n) {}
+function nFactorial(n) {
+  if (n === 0) {
+    return 1;
+  } else {
+    return n * nFactorial (n - 1);
+  }
+}
 
-function nFibonacci(n) {}
+// function nFactorial(n) {
+//   if (n === 0) {
+//     return 1;
+//   } else {
+//     let multipilicacion = 1;
+//     for (let i = 1; i < n + 1; i++) {
+//     multipilicacion = multipilicacion * i;
+//     }
+//   return multipilicacion;
+//   }
+// }
+
+
+function nFibonacci(n) {
+  if (n === 0) {
+    return 0;
+  } else { 
+    if (n === 1) {
+      return 1;
+    } else {
+      return nFibonacci(n - 2) + nFibonacci(n - 1);
+    }
+  }
+
+}
+
+// function nFibonacci(n) {
+//   let f1 = 0;
+//   let f2 = 1;
+//   let fn = 0;
+//   if (n === 0) {
+//     return f1;
+//   }
+
+//   if (n === 1) {
+//     return f2;
+//   }
+
+//   for (let i = 2; i <= n; i++) {
+//     fn = f1 + f2;
+//     f1 = f2;
+//     f2 = fn;
+//   }
+//   return fn;
+// }
+
+
+
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -27,7 +80,39 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {}
+// function Queue() {
+//   this.queue = [];
+// }
+
+// Queue.prototype.enqueue = function(elemento) {
+//   return this.queue.push(elemento);
+// }
+
+// Queue.prototype.dequeue = function(elemento) {
+//   return this.queue.shift(elemento);
+// }
+
+// Queue.prototype.size = function() {
+//   return this.queue.length;
+// }
+
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+
+  enqueue (elemento) {
+    return this.queue.push(elemento);
+  }
+
+  dequeue (elemento) {
+    return this.queue.shift(elemento);
+  }
+
+  size () {
+    return this.queue.length;
+  }
+}
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
 module.exports = {
