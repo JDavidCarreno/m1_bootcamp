@@ -108,11 +108,11 @@ function Pila() {
 }
 
 Pila.prototype.agregar = function(elemento) {
-    this.pila1.push(elemento);
+    return this.pila1.push(elemento);
 }
 
 Pila.prototype.eliminar = function(elemento) {
-    this.pila1.pop(elemento);
+    return this.pila1.pop(elemento);
 }
 
 let nuevo = new Pila;
