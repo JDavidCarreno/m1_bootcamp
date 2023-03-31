@@ -88,19 +88,20 @@ LinkedList.prototype.search = function(argument) {
     if (current === null) {
       return null;
     }
-    while (current !== null) {
+    while (current.next) {
       if (argument(current.value)) {
-        return current.value;
+        return current;
       } else {
-        current = current;
+        current = current.next;
       }
     }
     return null;
   } else {
+    let current = this.head;
     if (current === null) {
       return null;
     }
-    while (current !== null) {
+    while (current.next) {
       if (current.value === argument) {
         return current;
       } else {
@@ -110,6 +111,11 @@ LinkedList.prototype.search = function(argument) {
     return null;
   }
 }
+nw.add('2');
+nw.add('1');
+nw.add('1');
+console.log(nw);
+console.log(nw.search('1'));
 
 
 /* EJERCICIO 2
