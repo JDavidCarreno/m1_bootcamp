@@ -10,9 +10,81 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   search(isEven), donde isEven es una función que retorna true cuando recibe por parámetro un número par, busca un nodo cuyo valor sea un número par.
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
-function LinkedList() {}
+function LinkedList() {
+  this.head = null;
+}
 
-function Node(value) {}
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+LinkedList.prototype.add = function(value) {
+  let node = new Node(value);
+  let current = this.head;
+
+  if (current === null) {
+    this.head = node;
+    return node;
+  }
+
+  while (current.next) {
+    current = current.next
+  }
+  current.next = node;
+}
+
+LinkedList.prototype.size = function() {
+  let current = this.head;
+  let counter = 0;
+
+  if (current === null) {
+    return 'Lista vacía';
+  }
+
+  while (current !== null) {
+    counter++;
+    current = current.next;
+  }
+  return counter;
+
+}
+
+LinkedList.prototype.remove = function() {
+  let current = this.head;
+  
+  if (this.size() === 'Lista vacía') {
+    return null;
+  }
+  if (this.size() === 1) {
+    let val = current.value;
+    current = null
+    return val;
+  }
+  
+  while (current.next.next !== null) {
+    current = current.next;
+  }
+
+  let last = current.next;
+  current.next = null;
+  return last.value;
+}
+
+let nw = new LinkedList();
+
+nw.add('1');
+console.log(nw.size())
+//nw.add('2');
+console.log(nw);
+console.log(nw.remove());
+console.log(nw);
+console.log(nw.remove());
+console.log(nw);
+
+LinkedList.prototype.search = function(cb) {
+
+}
+
 
 /* EJERCICIO 2
 Implementar la clase HashTable.
