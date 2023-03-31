@@ -57,7 +57,7 @@ LinkedList.prototype.remove = function() {
   }
   if (this.size() === 1) {
     let val = current.value;
-    current = null
+    this.head = null
     return val;
   }
   
@@ -74,10 +74,11 @@ let nw = new LinkedList();
 
 nw.add('1');
 console.log(nw.size())
-//nw.add('2');
+nw.add('2');
 console.log(nw);
 console.log(nw.remove());
 console.log(nw);
+
 console.log(nw.remove());
 console.log(nw);
 
