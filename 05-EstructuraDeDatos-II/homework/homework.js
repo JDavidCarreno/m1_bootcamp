@@ -82,8 +82,33 @@ console.log(nw);
 console.log(nw.remove());
 console.log(nw);
 
-LinkedList.prototype.search = function(cb) {
-
+LinkedList.prototype.search = function(argument) {
+  if (typeof argument === 'function') {
+    let current = this.head;
+    if (current === null) {
+      return null;
+    }
+    while (current !== null) {
+      if (argument(current.value)) {
+        return current.value;
+      } else {
+        current = current;
+      }
+    }
+    return null;
+  } else {
+    if (current === null) {
+      return null;
+    }
+    while (current !== null) {
+      if (current.value === argument) {
+        return current;
+      } else {
+        current = current.next;
+      }
+    }
+    return null;
+  }
 }
 
 
