@@ -133,7 +133,7 @@ Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero
 */
 function HashTable() {
   this.array = [];
-  this.numBacket = 35;
+  this.numBackets = 35;
 }
 
 HashTable.prototype.hash = function (key) {
@@ -141,7 +141,7 @@ HashTable.prototype.hash = function (key) {
   for (let i = 0; i < key.length; i++) {
     sum = sum + key.charCodeAt(i);
   }
-  return sum % this.numBacket;
+  return sum % this.numBackets;
 }
 
 HashTable.prototype.set = function(key, value) {
@@ -158,7 +158,10 @@ HashTable.prototype.get = function(key) {
 }
 
 HashTable.prototype.hasKey = function(key) {
-  
+  let index = this.hash(key);
+  if (this.array[index]) {
+    return true;
+  } return false;
 }
 
 // No modifiquen nada debajo de esta linea
