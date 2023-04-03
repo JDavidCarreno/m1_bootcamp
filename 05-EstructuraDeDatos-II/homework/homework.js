@@ -83,33 +83,48 @@ console.log(nw.remove());
 console.log(nw);
 
 LinkedList.prototype.search = function(argument) {
-  if (typeof argument === 'function') {
-    let current = this.head;
-    if (current === null) {
-      return null;
-    }
-    while (current.next) {
+  // if (typeof argument === 'function') {
+  //   let current = this.head;
+  //   if (current === null) {
+  //     return null;
+  //   }
+  //   while (current.next) {
+  //     if (argument(current.value)) {
+  //       return current.value;
+  //     } else {
+  //       current = current.next;
+  //     }
+  //   }
+  //   return null;
+  // } else {
+  //   let current = this.head;
+  //   if (current === null) {
+  //     return null;
+  //   }
+  //   while (current.next) {
+  //     if (current.value === argument) {
+  //       return argument;
+  //     } else {
+  //       current = current.next;
+  //     }
+  //   }
+  //   return null;
+  // }
+
+  let current = this.head;
+  while(current) {
+    if (typeof argument !== 'function') {
+      if (argument === current.value) {
+        return current.value;
+      }
+    } else {
       if (argument(current.value)) {
-        return current;
-      } else {
-        current = current.next;
+        return current.value;
       }
     }
-    return null;
-  } else {
-    let current = this.head;
-    if (current === null) {
-      return null;
-    }
-    while (current.next) {
-      if (current.value === argument) {
-        return current;
-      } else {
-        current = current.next;
-      }
-    }
-    return null;
+    current = current.next;
   }
+  return null;
 }
 nw.add('2');
 nw.add('1');
@@ -133,7 +148,7 @@ Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero
 */
 function HashTable() {
   this.array = [];
-  this.numBackets = 35;
+  this.numBuckets = 35;
 }
 
 HashTable.prototype.hash = function (key) {
@@ -141,25 +156,33 @@ HashTable.prototype.hash = function (key) {
   for (let i = 0; i < key.length; i++) {
     sum = sum + key.charCodeAt(i);
   }
-  return sum % this.numBackets;
+  return sum % this.numBuckets;
 }
 
 HashTable.prototype.set = function(key, value) {
-  let index = this.hash(key);
+   let index = this.hash(key);
+  // if (!this.array[index]) {
+  //   this.array[index] = {};
+  // }
+  // this.array[index][key] = value;
+  if (typeof key !== 'string') {
+    throw new TypeError('Keys must be strings')
+  }
+
   if (!this.array[index]) {
-    this.array[index] = {};
+    this.array[index] = {}
   }
   this.array[index][key] = value;
 }
 
 HashTable.prototype.get = function(key) {
   let index = this.hash(key);
-  return this.array[index];
+  return this.array[index][key];
 }
 
 HashTable.prototype.hasKey = function(key) {
   let index = this.hash(key);
-  if (this.array[index]) {
+  if (this.array[index][key]) {
     return true;
   } return false;
 }
