@@ -185,6 +185,7 @@ HashTable.prototype.hasKey = function(key) {
   if (this.array[index][key]) {
     return true;
   } return false;
+  // return this.array[index].hasOwnProperty(key);
 }
 
 // No modifiquen nada debajo de esta linea
