@@ -16,7 +16,15 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
-    
+    let counter = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (Array.isArray(array[i])) {
+            counter += countArray(array[i]);
+        } else{
+            counter += array[i];
+        }
+    }
+    return counter;
 }
 
 
@@ -39,7 +47,26 @@ var countArray = function(array) {
 
 var countProps = function(obj) {
     // Tu código aca:
-
+    let counter = 0;
+    // let propertys = Object.keys(obj);
+    // for (let i = 0; i < propertys.length; i++) {
+    //     counter++
+    //     if (typeof propertys[i] === 'object') {
+    //         if (!Array.isArray(propertys[i])) {
+    //             counter += countProps(propertys[i]);
+    //         }
+    //     } 
+    // }
+    // return counter;
+    for (const prop in obj) {
+        counter++;
+        if (typeof obj[prop] === 'object') {
+            if (!Array.isArray(obj[prop])) {
+                counter += countProps(obj[prop])
+            }
+        }
+    }
+    return counter;
 }
 
 
@@ -53,7 +80,17 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
+    let counter = 0;
+    let current = this.head;
 
+    while (current) {
+        if (isNaN(current.value)) {
+            current.value = 'Kiricocho';
+            counter++;
+        }
+        current = current.next;
+    }
+    return counter;
 }
 
 
@@ -67,7 +104,20 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
+    let newQueue = new Queue;
+    while (queueOne.size() || queueTwo.size()) {
+        let oneQueue = queueOne.dequeue();
+        let secondQueue = queueTwo.dequeue();
 
+        if (oneQueue) {
+            newQueue.enqueue(oneQueue);
+        } 
+
+        if (secondQueue) {
+            newQueue.enqueue(secondQueue);
+        }
+    }
+    return newQueue;
 }
 
 
@@ -82,14 +132,41 @@ var mergeQueues = function(queueOne, queueTwo) {
 
 var closureMult = function(multiplier) {
     // Tu código aca:
-
+    return function(num) {
+        return num * multiplier;
+    }
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
+    // if (!this.left && !this.right) {
+    //     return this.value;
+    // }
 
+    // if (!this.right && this.left) {
+    //     return this.value + this.left.sum();
+    // }
+
+    // if (!this.left && this.right) {
+    //     return this.value + this.right.sum();
+    // }
+
+    // if (this.right && this.left) {
+    //     return this.value + this.left.sum() + this.right.sum();
+    // }
+
+    let suma = this.value;
+    if (this.left) {
+        suma += this.left.sum();
+    }
+
+    if (this.right) {
+        suma += this.right.sum();
+    }
+
+    return suma;
 }
 
 module.exports = {
