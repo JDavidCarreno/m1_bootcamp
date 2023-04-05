@@ -157,6 +157,8 @@ BinarySearchTree.prototype.sum = function() {
     //     return this.value + this.left.sum() + this.right.sum();
     // }
 
+    //OTRA OPCION   
+
     let suma = this.value;
     if (this.left) {
         suma += this.left.sum();
